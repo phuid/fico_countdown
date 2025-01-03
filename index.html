@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +16,100 @@
       font-family: Arial, sans-serif;
       text-align: center;
     }
+
+    #fico {
+      background-image: url("fico.jpeg");
+      background-size: contain;
+      opacity: 0.1;
+      position: absolute;
+      height: 80%;
+    }
+
+    @media (orientation:landscape) {
+      #fico {
+        height: 100%;
+      }
+    }
+
+    @media (orientation:portrait) {
+      #fico {
+        height: 70%;
+        transform: translateX(-20%);
+      }
+    }
+
     #countdown {
       font-size: 2em;
     }
+
+    h4 {
+      font-weight: 100;
+    }
+
+    h6 {
+      font-size: 0.4em;
+      font-weight: 100;
+    }
   </style>
 </head>
+
 <body>
   <div id="countdown">Loading...</div>
+  <img id="fico" src="fico.svg">
+
 
   <script>
+    function getArrMaxTop(arr, index) {
+      if (index >= arr.length) {
+        return arr[arr.length - 1];
+      }
+      return arr[index];
+    }
+
+    let rok = ['rok',
+      'roky',
+      'roky',
+      'roky',
+      'let'
+    ];
+    let mesic = ['měsíc',
+      'měsíce',
+      'měsíce',
+      'měsíce',
+      'měsíců'
+    ];
+    let den = ['den',
+      'dny',
+      'dny',
+      'dny',
+      'dnů'
+    ];
+    let hodina = ['hodinu',
+      'hodiny',
+      'hodiny',
+      'hodiny',
+      'hodin'
+    ];
+    let minuta = ['minutu',
+      'minuty',
+      'minuty',
+      'minuty',
+      'minut'
+    ];
+    let sekunda = ['sekundu',
+      'sekundy',
+      'sekundy',
+      'sekundy',
+      'sekund'
+    ];
+    let je = ['je',
+      'jsou',
+      'jsou',
+      'jsou',
+      'je'
+    ];
+
+
     function updateCountdown() {
       const endDate = new Date('2027-10-24T23:59:59'); // Set your target date here
       const now = new Date();
@@ -43,13 +129,14 @@
       const months = Math.floor((days % 365) / 30);
       const remainingDays = days % 30;
 
-      document.getElementById('countdown').innerHTML = 
-        `Robert Fico bude ještě u moci ${days} dnů ${hours} hodin ${minutes} minut a ${seconds} sekund, ` +
-        `to je ${years} let ${months} měsíců a ${remainingDays} dnů`;
+      document.getElementById('countdown').innerHTML =
+        `<h4>Robert Fico bude ještě u moci ${days} ${getArrMaxTop(den, days)} ${hours} ${getArrMaxTop(hodina, hours)} ${minutes} ${getArrMaxTop(minuta, minutes)} a ${seconds} ${getArrMaxTop(sekunda, seconds)}, <h4>` +
+        `<h6>to ${getArrMaxTop(je, years)} ${years} ${getArrMaxTop(rok, years)} ${months} ${getArrMaxTop(mesic, months)} a ${remainingDays} ${getArrMaxTop(den, days)}<h6>`;
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
 </body>
+
 </html>
