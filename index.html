@@ -10,11 +10,21 @@
       background-color: black;
       color: white;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
       text-align: center;
+      overflow: hidden;
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 0;
+      font-size: 0.5em;
+      font-weight: 100;
+      color: darkgrey;
     }
 
     #fico {
@@ -57,9 +67,9 @@
   <div id="countdown">Loading...</div>
   <img id="fico" src="fico.svg">
 
-  <footer>
+  <div id="footer">
     počítáno za předpokladu že Robert Fico bude u moci do 24.10.2027 (4 roky od nástupu do úřadu)
-  </footer>
+  </div>
 
   <script>
     function getArrMaxTop(arr, index) {
