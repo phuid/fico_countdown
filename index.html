@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #countdown {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">Loading...</div>
+
+  <script>
+    function updateCountdown() {
+      const endDate = new Date('2027-10-24T23:59:59'); // Set your target date here
+      const now = new Date();
+      const diff = endDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = "Robert Fico už není u moci.";
+        return;
+      }
+
+      const seconds = Math.floor((diff / 1000) % 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      const years = Math.floor(days / 365);
+      const months = Math.floor((days % 365) / 30);
+      const remainingDays = days % 30;
+
+      document.getElementById('countdown').innerHTML = 
+        `Robert Fico bude ještě u moci ${days} dnů ${hours} hodin ${minutes} minut a ${seconds} sekund, ` +
+        `to je ${years} let ${months} měsíců a ${remainingDays} dnů`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
