@@ -148,7 +148,7 @@
 
       document.getElementById('countdown').innerHTML =
         `<h4>Robert Fico bude ještě u moci ${days} ${getArrMaxTop(den, days)} ${hours} ${getArrMaxTop(hodina, hours)} ${minutes} ${getArrMaxTop(minuta, minutes)} a ${seconds} ${getArrMaxTop(sekunda, seconds)}, <h4>` +
-        `<h6>to ${getArrMaxTop(je, years)} ${years} ${getArrMaxTop(rok, years)} ${months} ${getArrMaxTop(mesic, months)} a ${remainingDays} ${getArrMaxTop(den, days)}<h6>`;
+        `<h6>to ${getArrMaxTop(je, years)} ${years} ${getArrMaxTop(rok, years)} ${months} ${getArrMaxTop(mesic, months)} a ${remainingDays} ${getArrMaxTop(den, remainingDays)}<h6>`;
     }
 
     setInterval(updateCountdown, 1000);
