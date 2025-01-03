@@ -66,6 +66,16 @@
       return arr[index];
     }
 
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function logValue(val) {
+      console.log(val);
+      return val;
+    }
+
+
     let rok = ['rok',
       'roky',
       'roky',
@@ -136,6 +146,12 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+    setInterval(() => {
+      document.getElementById('fico').style.opacity = "1";
+      setTimeout(() => {
+        document.getElementById('fico').style.opacity = "";
+      }, 10);
+    }, logValue(getRandomArbitrary(1000, 50000)));
   </script>
 </body>
 
