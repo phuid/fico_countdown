@@ -7,6 +7,21 @@
   <title>fico countdown</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
+    @keyframes breathing {
+      0% {
+        opacity: 0.1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 0.1;
+      }
+    }
+
+
     body {
       background-color: black;
       color: white;
@@ -34,6 +49,7 @@
       opacity: 0.1;
       position: absolute;
       height: 80%;
+      animation: breathing 2s infinite;
     }
 
     @media (orientation:landscape) {
