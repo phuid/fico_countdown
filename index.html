@@ -72,6 +72,8 @@
     počítáno za předpokladu že Robert Fico bude u moci do 24.10.2027 (4 roky od nástupu do úřadu)
   </div>
 
+  <!-- <script defer src="/fico_countdown/moment-with-locales.js"></script> -->
+  <script src="moment-with-locales.js"></script>
   <script>
     function getArrMaxTop(arr, index) {
       if (index >= arr.length) {
@@ -141,8 +143,33 @@
     ];
 
 
+    const endMoment = moment('20271024', 'YYYYMMDD');
+    const endDate = new Date('2027-10-24T23:59:59'); // Set your target date here
+
+    moment.updateLocale('sk', {
+      relativeTime: {
+        future: "za %s",
+        past: "před %s",
+        s: 'pár sekundami',
+        ss: '%d sekund',
+        m: "minutu",
+        mm: "%d minut",
+        h: "hodinou",
+        hh: "%d hodin",
+        d: "den",
+        dd: "%d dnů",
+        w: "týden",
+        ww: "%d týdnů",
+        M: "měsíc",
+        MM: "%d měsíců",
+        y: "rok",
+        yy: "%d let"
+      }
+    });
+    moment.locale('sk');
+    console.log(moment.locale());
+
     function updateCountdown() {
-      const endDate = new Date('2027-10-24T23:59:59'); // Set your target date here
       const now = new Date();
       const diff = endDate - now;
 
@@ -151,18 +178,18 @@
         return;
       }
 
-      const seconds = Math.floor((diff / 1000) % 60);
-      const minutes = Math.floor((diff / 1000 / 60) % 60);
-      const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var diffTime = moment(endMoment).diff(moment());
 
-      const years = Math.floor(days / 365);
-      const months = Math.floor((days % 365) / 30);
-      const remainingDays = days % 30;
+      var duration = moment.duration(diffTime);
+      var years = duration.years(),
+        days = duration.days(),
+        months = duration.months(),
+        hours = duration.hours(),
+        minutes = duration.minutes(),
+        seconds = duration.seconds();
 
       document.getElementById('countdown').innerHTML =
-        `<h4>Robert Fico bude ještě u moci ${days} ${getArrMaxTop(den, days)} ${hours} ${getArrMaxTop(hodina, hours)} ${minutes} ${getArrMaxTop(minuta, minutes)} a ${seconds} ${getArrMaxTop(sekunda, seconds)}, <h4>` +
-        `<h6>to ${getArrMaxTop(je, years)} ${years} ${getArrMaxTop(rok, years)} ${months} ${getArrMaxTop(mesic, months)} a ${remainingDays} ${getArrMaxTop(den, remainingDays)}<h6>`;
+        `<h4>Robert Fico bude ještě u moci ${years} ${getArrMaxTop(rok, years)} ${months} ${getArrMaxTop(mesic, months)} ${days} ${getArrMaxTop(den, days)} ${hours} ${getArrMaxTop(hodina, hours)} ${minutes} ${getArrMaxTop(minuta, minutes)} a ${seconds} ${getArrMaxTop(sekunda, seconds)}<h4>`;
     }
 
     setInterval(updateCountdown, 1000);
